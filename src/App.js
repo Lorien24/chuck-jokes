@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import Jokes from "./components/Jokes/Jokes";
 import Main from "./components/Main/Main";
+import Favorites from "./components/Favorite/Favorite";
 
 function App() {
 
@@ -13,10 +14,11 @@ function App() {
   const [categoriesList, setCategoriesList] = useState([]);
   const [input, setInput] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
+  const [liked, setLiked] = useState([])
 
   const categoriesApi = 'https://api.chucknorris.io/jokes/categories';
 
-
+const storage = JSON.parse(localStorage.getItem('liked'))
 
 useEffect(()=>{
   axios.get(categoriesApi)
@@ -42,6 +44,32 @@ useEffect(()=>{
 
   const handleDate =(date)=>{
     return Math.round((Date.now() - Date.parse(date)) / 3600000)
+
+    // (1000 * 60 * 60 * 24)
+  }
+
+  const getLiked=(event)=>{
+    let array=[...liked]
+
+    // let storageArray = storage ? storage.findIndex(a => a.id === event.target.id) : array.findIndex(b=> b.id === b.target.id)
+    // let favoriteList = jokes[1] ? jokes.findIndex(c=>c.id === event.target.id) : null
+
+    let favoriteList = jokes[1] ? jokes.findIndex(j => j.id === event.target.id) : null;
+    let storageArray = storage ? storage.findIndex(a => a.id === event.target.id) : 
+                                 array.findIndex(b => b.id === event.target.id)
+
+                                 if(storageArray !== -1) {
+                                  array = storage 
+                                  array.splice(storageArray, 1);
+                                  setLiked(array)
+                                  localStorage.setItem('liked', JSON.stringify(array))
+                                }
+    else {
+      array = storage ? storage : liked
+      localStorage.setItem('liked', 
+        JSON.stringify([...array, jokes[1] ? jokes.slice(favoriteList, favoriteList + 1)[0] : jokes]))
+        setLiked([...array, jokes[1] ? jokes.slice(favoriteList, favoriteList + 1)[0] : jokes])
+  }  
   }
 
   const chooseCategory =(event)=>{
@@ -71,10 +99,15 @@ useEffect(()=>{
   }
 
   return (
+    <>
 <div className="container">
 <Main handleJoke={handleJoke} handleSearch ={handleSearch} input={input} categoriesList={categoriesList} showCategories={showCategories} chooseCategory={chooseCategory} handleRadio={handleRadio} />
-<Jokes jokes={jokes} handleDate={handleDate} isCliked={isClicked} search={search}/>
+<Jokes jokes={jokes} handleDate={handleDate} isCliked={isClicked} search={search} getLiked={getLiked} storage={storage}/>
 </div>
+<div>
+  <Favorites getLiked={getLiked} handleDate={handleDate} storage={storage}/>
+</div>
+</>
   )
 }
 
