@@ -1,0 +1,19 @@
+.category {
+  width: 85px;
+  height: 28px;
+  border: 2px solid #f8f8f8;
+  box-sizing: border-box;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ababab;
+  outline: none;
+  margin: 20px 5px;
+}
+.category:hover,
+.category:focus {
+  color: #333;
+  background: #f8f8f8;
+}

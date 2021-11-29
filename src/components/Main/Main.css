@@ -1,0 +1,28 @@
+.radio_btn {
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.submit_btn {
+  width: 150px;
+  height: 40px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background: linear-gradient(90.55deg, #8ea7ff 0%, #7291ff 100%);
+}
+.submit_btn:hover {
+  cursor: pointer;
+}
+label {
+  font-size: 18px;
+}
+.main_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  margin-bottom: 40px;
+}
