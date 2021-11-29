@@ -144,9 +144,11 @@ function App() {
   }
   const handleHamburger = () => {
     setIsFavoriteHidden(
-      isFavoriteHidden === "favorite" ? "hidden" : "favurite"
+      isFavoriteHidden === "favorite" ? "hidden" : "favorite"
     );
-    setIsHamburgerClicked(isHamburgerClicked === "active" ? "clicked" : "active");
+    setIsHamburgerClicked(
+      isHamburgerClicked === "active" ? "clicked" : "active"
+    );
   };
 
   return (
@@ -179,13 +181,12 @@ function App() {
           </div>
         </div>
         <div className={isFavoriteHidden}>
-            <Favorites
-              getLiked={getLiked}
-              handleDate={handleDate}
-              storage={storage}
-            />
-          </div>
-
+          <Favorites
+            getLiked={getLiked}
+            handleDate={handleDate}
+            storage={storage}
+          />
+        </div>
       </div>
     </>
   );
