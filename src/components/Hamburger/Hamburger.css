@@ -1,51 +1,54 @@
-.hamburger{
-    width: 30px;
-    height: 30px;
-    background-color: #333;
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    position: absolute;
-    top: 35px;
-    right: 135px;
-    z-index: 1000;
-    border-radius: 50%;
-    margin-left: 20px;
-    padding: 10px;
-    cursor: pointer;
+.hamburger {
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 35px;
+  right: 135px;
+  z-index: 1000;
+  border-radius: 50%;
+  margin-left: 20px;
+  padding: 10px;
+  cursor: pointer;
 }
 
-.active, .clicked{
-    width: 14px;
-    height: 2px;
-    background: white;
-    transition: all .7s;
+.active,
+.clicked {
+  width: 14px;
+  height: 2px;
+  background: white;
+  transition: all 0.7s;
 }
-.hamburger::after{
-    display: block;
-    content: 'Favorite';
-    position: absolute;
-    left: 30px;
-    margin-left: 5px;
-    font-size: 20px;
-    color: #ababab;
+.hamburger::after {
+  display: block;
+  content: "Favorite";
+  position: absolute;
+  left: 30px;
+  margin-left: 5px;
+  font-size: 20px;
+  color: #ababab;
 }
-.clicked:first-child{
-    width: 15px;
+.clicked:first-child {
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 1.5);
+  width: 15px;
 }
-.clicked:last-child{
-    width: 15px;
+.clicked:last-child {
+  transform: matrix(0.71, -0.71, 0.71, 0.71, 0, -3);
+  width: 15px;
 }
-@media(max-width: 834px) {
-    .hamburger {
-        display: flex;
-    }
+@media (max-width: 834px) {
+  .hamburger {
+    display: flex;
+  }
 }
 
-@media(max-width: 480px) {
-    .hamburger {
-        top: 15px;
-        right: 114px;
-    }
+@media (max-width: 480px) {
+  .hamburger {
+    top: 15px;
+    right: 115px;
+  }
 }
